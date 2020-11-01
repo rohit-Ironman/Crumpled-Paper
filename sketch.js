@@ -5,10 +5,13 @@ const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
 var paper, ground; 
-var block1; 
-var block2, block3;
+var block, blackImage; 
 
+function preload(){
 
+	blockImage = loadImage("dustbingreen.png")
+
+}
 
 function setup() {
 	createCanvas(800, 700);
@@ -20,14 +23,12 @@ function setup() {
 	paper = new Paper(200, 556); 
 	ground = new Ground(400,600,800,20);
 
-	block1 = createSprite(600,596,200,10);
-	block1.shapeColor = color("red");
 
-	block2 = createSprite(500,560,10,100);
-	block2.shapeColor = color("red"); 
 
-	block3 = createSprite(700,560,10,100);
-	block3.shapeColor = color("red");
+	block = createSprite(500,507,0,200);
+	block.shapeColor = color("black"); 
+	block.addImage("block", blockImage);
+	block.scale = 0.5;
 
 	Engine.run(engine);
   
@@ -36,7 +37,7 @@ function setup() {
 
 function draw() {
 
-  background(0);
+  background(255);
 	Engine.update(engine);
 
   ground.display();
@@ -50,7 +51,7 @@ drawSprites();
 
 function keyPressed() {
 	if (keyCode === UP_ARROW) {
-	  Matter.Body.applyForce(paper.body,paper.body.position,{x:7,y:-28});
+	  Matter.Body.applyForce(paper.body,paper.body.position,{x:5.5,y:-28});
 	}
   }
   
